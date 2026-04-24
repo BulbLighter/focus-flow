@@ -1,5 +1,13 @@
 //loads our .env file for using the values in it
 require('dotenv').config();
+
+const dns = require('dns');
+//dns module is used to configure DNS settings for the server
+dns.setDefaultResultOrder('ipv4first');
+//ensures that IPv4 addresses are prioritized over IPv6 when resolving domain names
+dns.setServers(process.env.DNS_SERVERS.split(','));
+//sets the DNS servers to the ones specified in the .env file, splitting the string into an array of server addresses
+
 //always load env files before anything else to avoid undefined error
 const express = require('express');
 //require is needed for importing a library
